@@ -82,4 +82,5 @@ jobs:
           app-name: 'customerstory'
           slot-name: 'Production'
           package: ${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}
+          scm-do-build-during-deployment: true
           
