@@ -16,7 +16,7 @@ def search_customer_stories(query, top=10, skip=0):
         "skip": skip,
         "query": query,
     }
-    resp = requests.post(CUSTOMER_STORIES_API_URL, json=body)
+    resp = requests.post(CUSTOMER_STORIES_API_URL, json=body, timeout=10)
     resp.raise_for_status()
     return resp.json()
 
@@ -114,7 +114,8 @@ def MyHttpTrigger(req: func.HttpRequest) -> func.HttpResponse:
     except requests.exceptions.RequestException as e:
         logging.error(f"Failed to fetch customer stories: {e}")
         return func.HttpResponse(
-            f"Failed to fetch customer stories from the API.",
+            "Failed to fetch customer stories from the API."
+            " Please try again later.",
             status_code=500,
         )
 
